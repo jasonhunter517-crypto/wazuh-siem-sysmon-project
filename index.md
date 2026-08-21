@@ -31,14 +31,22 @@ For my first experiment, I tested whether Sysmon and Wazuh could capture process
 After generating the activity, I opened Wazuh Discover and filtered the logs for the `ad01` agent. I looked for process-related information such as the process name, command line, parent process, user, timestamp, and Sysmon Event ID.
 
 The process activity was successfully recorded by Sysmon and appeared in Wazuh. The events contained useful process information that could be used during an investigation. This confirmed that Wazuh was receiving process telemetry from `ad01`.
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-16-311Z.png]]
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-03-988Z.png]]
-![[cs-screenshot-ad01-2026-08-20T05-06-19-053Z.png]]
+[cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-16-311Z.png]
+[cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-03-988Z.png]
+[cs-screenshot-ad01-2026-08-20T05-06-19-053Z.png]
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-10-51-003Z" src="https://github.com/user-attachments/assets/843bc548-1f9d-4f80-8f04-9c7c915f35b7" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-10-33-563Z" src="https://github.com/user-attachments/assets/1ce378f1-6a6c-4c04-ba93-734ccfff9d1a" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-10-06-912Z" src="https://github.com/user-attachments/assets/563a4159-6d9c-4fdd-950d-5e6182fb5782" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-09-15-202Z" src="https://github.com/user-attachments/assets/fe56ac36-af47-44d8-81aa-3ff6877985cc" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-07-41-645Z" src="https://github.com/user-attachments/assets/57700110-4254-4a88-a1f2-42b6983a7158" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-07-27-597Z" src="https://github.com/user-attachments/assets/f8b19e2c-2b16-46b3-aae7-9a16733e5f8a" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-06-59-123Z" src="https://github.com/user-attachments/assets/761b300d-b9f2-47ac-b4cb-9c97c25a75a7" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-06-51-020Z" src="https://github.com/user-attachments/assets/042ddd7d-3faa-4a1b-8131-4963b70de08f" />
 **What I did:** I generated process activity on `ad01` by opening Command Prompt, running `whoami`, and launching Notepad.
 
 **How I did it:** I performed the activity directly on the monitored Windows endpoint, then reviewed the Sysmon Operational log in Windows Event Viewer and searched Wazuh Discover for events from `ad01`.
 
-**Expected result:** I expected Sysmon Event ID 1 to record the new process and expected the event to be forwarded to Wazuh with process name, command-line, parent process, user, and timestamp information.
+**Expected result:** I expected Sysmon Event ID 1 to record the new process and expected the event to be forwarded to Wazuh with process name, command-line, parent process, user, and timestamp information.Sysmon successfully captured the process activity generated on ad01. The evidence showed a Sysmon Event ID 1 for process creation, including the process name, command-line information, parent process, user, and timestamp. The corresponding event also appeared in Wazuh, confirming that process telemetry from ad01 was successfully forwarded to the SIEM.
 
 ### Experiment #2: Network Activity
 
@@ -47,9 +55,9 @@ For my second experiment, I tested whether Sysmon and Wazuh could capture networ
 I then reviewed the Sysmon logs and Wazuh Discover for network-related activity. I focused on information such as the source IP address, destination IP address, source and destination ports, protocol, and the process responsible for the connection.
 
 Network-related events were visible in Wazuh and contained information about the connection, including IP addresses, ports, protocol, and process details. This showed that the SIEM could provide useful network telemetry for investigating activity from the endpoint.
-![[cs-screenshot-ad01-2026-08-20T06-14-21-500Z.png]]
-![[cs-screenshot-ad01-2026-08-20T06-13-44-495Z.png]]
-![[cs-screenshot-ad01-2026-08-20T06-08-35-875Z.png]]
+[cs-screenshot-ad01-2026-08-20T06-14-21-500Z.png]
+[cs-screenshot-ad01-2026-08-20T06-13-44-495Z.png]
+[cs-screenshot-ad01-2026-08-20T06-08-35-875Z.png]
 
 **What I did:**  
 I generated network activity from `ad01` by using Command Prompt to connect to another host.
@@ -58,7 +66,7 @@ I generated network activity from `ad01` by using Command Prompt to connect to a
 I ran a network command on `ad01`, then reviewed the Sysmon Operational log in Event Viewer and filtered Wazuh Discover for events from the `ad01` agent.
 
 **Expected result:**  
-I expected Sysmon Event ID 3 to record the connection and Wazuh to display the same network activity with source/destination IPs, ports, protocol, and process information.
+I expected Sysmon Event ID 3 to record the connection and Wazuh to display the same network activity with source/destination IPs, ports, protocol, and process information.Sysmon successfully recorded the network connection generated from ad01. The event contained the source IP address, destination IP address, source/destination port information, protocol, and the process associated with the connection. The matching network event was also visible in Wazuh, confirming that network connection telemetry was being collected and forwarded correctly.
 ### Experiment #3: MITRE ATT&CK T1105
 
 For my third experiment, I tested activity related to MITRE ATT&CK technique T1105, Ingress Tool Transfer, using Atomic Red Team in the lab environment.
@@ -70,16 +78,16 @@ Wazuh recorded events generated during the experiment and provided process and a
 During one of the experiments, I initially could not find the event I expected in Wazuh. At first, I thought the experiment or logging configuration had failed. I checked Windows Event Viewer and confirmed that Sysmon had recorded the activity. I then realized that the issue was caused by my Wazuh search settings. After adjusting the time range and filtering specifically for the `ad01` agent and relevant Sysmon fields, I was able to locate the event.
 
 This reinforced the importance of confirming endpoint activity first and then checking the SIEM search configuration before assuming that data collection has failed.
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-45-01-562Z.png]]
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-44-46-767Z.png]]
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-41-00-966Z.png]]
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-48-116Z.png]]
-![[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-33-976Z.png]]
-![[cs-screenshot-ART_Workstation-2026-08-20T06-36-06-935Z.png]]
-![[cs-screenshot-ART_Workstation-2026-08-20T06-35-54-936Z.png]]
-![[cs-screenshot-ART_Workstation-2026-08-20T06-30-28-989Z.png]]
-![[cs-screenshot-ART_Workstation-2026-08-20T06-30-12-180Z.png]]
-![[cs-screenshot-ART_Workstation-2026-08-20T06-29-40-046Z.png]]
+[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-45-01-562Z.png]
+[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-44-46-767Z.png]
+[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-41-00-966Z.png]
+[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-48-116Z.png]
+cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-33-976Z.png]
+[cs-screenshot-ART_Workstation-2026-08-20T06-36-06-935Z.png]
+[cs-screenshot-ART_Workstation-2026-08-20T06-35-54-936Z.png]
+[cs-screenshot-ART_Workstation-2026-08-20T06-30-28-989Z.png]
+[cs-screenshot-ART_Workstation-2026-08-20T06-30-12-180Z.png]
+[cs-screenshot-ART_Workstation-2026-08-20T06-29-40-046Z.png]
 
 **What I did:**  
 I used Atomic Red Team to simulate MITRE ATT&CK technique T1105, Ingress Tool Transfer, in the lab environment.
@@ -88,7 +96,7 @@ I used Atomic Red Team to simulate MITRE ATT&CK technique T1105, Ingress Tool Tr
 I executed the T1105 Atomic Red Team test from the ART Workstation, then reviewed the resulting events in Wazuh Discover and checked the Wazuh MITRE ATT&CK dashboard.
 
 **Expected result:**  
-I expected the test to generate process, network, or file-transfer telemetry that Wazuh could collect and use to investigate activity associated with T1105.
+I expected the test to generate process, network, or file-transfer telemetry that Wazuh could collect and use to investigate activity associated with T1105.The Atomic Red Team T1105 PowerShell Download test executed successfully. Wazuh captured activity generated by the PowerShell process during the test, providing evidence of the simulated ingress tool transfer behavior. The MITRE ATT&CK dashboard was then used to review the activity in the context of T1105.
 
 
 ## Conclusion
