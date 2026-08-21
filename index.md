@@ -31,9 +31,7 @@ For my first experiment, I tested whether Sysmon and Wazuh could capture process
 After generating the activity, I opened Wazuh Discover and filtered the logs for the `ad01` agent. I looked for process-related information such as the process name, command line, parent process, user, timestamp, and Sysmon Event ID.
 
 The process activity was successfully recorded by Sysmon and appeared in Wazuh. The events contained useful process information that could be used during an investigation. This confirmed that Wazuh was receiving process telemetry from `ad01`.
-[cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-16-311Z.png]
-[cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-03-988Z.png]
-[cs-screenshot-ad01-2026-08-20T05-06-19-053Z.png]
+
 <img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-10-51-003Z" src="https://github.com/user-attachments/assets/843bc548-1f9d-4f80-8f04-9c7c915f35b7" />
 <img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-10-33-563Z" src="https://github.com/user-attachments/assets/1ce378f1-6a6c-4c04-ba93-734ccfff9d1a" />
 <img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T15-10-06-912Z" src="https://github.com/user-attachments/assets/563a4159-6d9c-4fdd-950d-5e6182fb5782" />
@@ -78,16 +76,16 @@ Wazuh recorded events generated during the experiment and provided process and a
 During one of the experiments, I initially could not find the event I expected in Wazuh. At first, I thought the experiment or logging configuration had failed. I checked Windows Event Viewer and confirmed that Sysmon had recorded the activity. I then realized that the issue was caused by my Wazuh search settings. After adjusting the time range and filtering specifically for the `ad01` agent and relevant Sysmon fields, I was able to locate the event.
 
 This reinforced the importance of confirming endpoint activity first and then checking the SIEM search configuration before assuming that data collection has failed.
-[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-45-01-562Z.png]
-[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-44-46-767Z.png]
-[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-41-00-966Z.png]
-[cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-48-116Z.png]
-cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-33-976Z.png]
-[cs-screenshot-ART_Workstation-2026-08-20T06-36-06-935Z.png]
-[cs-screenshot-ART_Workstation-2026-08-20T06-35-54-936Z.png]
-[cs-screenshot-ART_Workstation-2026-08-20T06-30-28-989Z.png]
-[cs-screenshot-ART_Workstation-2026-08-20T06-30-12-180Z.png]
-[cs-screenshot-ART_Workstation-2026-08-20T06-29-40-046Z.png]
+<img width="1136" height="520" alt="cs-screenshot-ART_Workstation-2026-08-20T06-30-28-989Z" src="https://github.com/user-attachments/assets/87faf509-d625-4fbe-83d7-3454ce893d83" />
+<img width="1136" height="520" alt="cs-screenshot-ART_Workstation-2026-08-20T06-36-06-935Z" src="https://github.com/user-attachments/assets/0968ec2c-6cd0-4fac-bcfc-7e9d5ea79dbe" />
+<img width="1136" height="520" alt="cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-03-988Z" src="https://github.com/user-attachments/assets/036c113f-280d-42d6-a472-81ba226e362b" />
+<img width="1136" height="520" alt="cs-screenshot-Blue-Team_Workstation-2026-08-20T05-12-16-311Z" src="https://github.com/user-attachments/assets/1e519dab-4c14-4f7f-a91a-c7145611a3a9" />
+<img width="1136" height="520" alt="cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-33-976Z" src="https://github.com/user-attachments/assets/b4713244-694e-4753-9656-8a5605e71891" />
+<img width="1136" height="520" alt="cs-screenshot-Blue-Team_Workstation-2026-08-20T06-40-48-116Z" src="https://github.com/user-attachments/assets/9047974b-24b0-437a-9221-d73f5f138989" />
+<img width="1136" height="520" alt="cs-screenshot-Blue-Team_Workstation-2026-08-20T06-44-46-767Z" src="https://github.com/user-attachments/assets/19030b60-f550-41b8-a408-5c5d7441c60f" />
+<img width="1136" height="520" alt="cs-screenshot-Blue-Team_Workstation-2026-08-20T06-45-01-562Z" src="https://github.com/user-attachments/assets/f8278878-2176-468f-aba7-f8a313e5ebbd" />
+<img width="1136" height="520" alt="cs-screenshot-ART_Workstation-2026-08-20T06-35-54-936Z" src="https://github.com/user-attachments/assets/b6ebe09f-2a63-410e-b6f8-ba89150da518" />
+
 
 **What I did:**  
 I used Atomic Red Team to simulate MITRE ATT&CK technique T1105, Ingress Tool Transfer, in the lab environment.
