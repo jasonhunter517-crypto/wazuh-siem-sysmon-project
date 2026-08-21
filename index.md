@@ -53,9 +53,12 @@ For my second experiment, I tested whether Sysmon and Wazuh could capture networ
 I then reviewed the Sysmon logs and Wazuh Discover for network-related activity. I focused on information such as the source IP address, destination IP address, source and destination ports, protocol, and the process responsible for the connection.
 
 Network-related events were visible in Wazuh and contained information about the connection, including IP addresses, ports, protocol, and process details. This showed that the SIEM could provide useful network telemetry for investigating activity from the endpoint.
-[cs-screenshot-ad01-2026-08-20T06-14-21-500Z.png]
-[cs-screenshot-ad01-2026-08-20T06-13-44-495Z.png]
-[cs-screenshot-ad01-2026-08-20T06-08-35-875Z.png]
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-20T06-08-35-875Z" src="https://github.com/user-attachments/assets/2d5a9702-476c-49c1-a079-5411e92de624" />
+<img width="1136" height="495" alt="cs-screenshot-ad01-2026-08-21T21-33-48-331Z" src="https://github.com/user-attachments/assets/28fc5f4c-96d7-4273-bc1f-1fff47e82d90" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T21-35-20-427Z" src="https://github.com/user-attachments/assets/b0d4e8e4-3820-46bd-9db7-4c83791ddba0" />
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T21-35-37-679Z" src="https://github.com/user-attachments/assets/2eb2905d-8a8c-417e-8828-c1ca412c298f" />
+
+<img width="1136" height="520" alt="cs-screenshot-ad01-2026-08-21T21-35-50-817Z" src="https://github.com/user-attachments/assets/c4195992-2378-4899-9b31-3dc6f1f43700" />
 
 **What I did:**  
 I generated network activity from `ad01` by using Command Prompt to connect to another host.
